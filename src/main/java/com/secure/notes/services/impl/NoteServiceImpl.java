@@ -10,13 +10,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class NoteServiceImpl implements NoteService 
 {
-	private NoteRepository noteRepository;
+	private final NoteRepository noteRepository;
 
 	@Override
-	public Note createNoteForUser(String userName, String Content) 
+	public Note createNoteForUser(String userName, String content) 
 	{
 		Note note=new Note();
-		note.setContent(Content);
+		note.setContent(content);
 		note.setOwnerUsername(userName);
 		return noteRepository.save(note);		
 	}
@@ -32,15 +32,15 @@ public class NoteServiceImpl implements NoteService
 	}
 
 	@Override
-	public void deleteNoteForUser(Long noteId, String Username) 
+	public void deleteNoteForUser(Long noteId, String username) 
 	{	
 		noteRepository.deleteById(noteId);
 	}
 
 	@Override
-	public List<Note> getNotesForUser(String userName) 
+	public List<Note> getNotesForUser(String username) 
 	{
-	    List<Note> personalNotes= noteRepository.findByOwnerUsername(userName);
+	    List<Note> personalNotes= noteRepository.findByOwnerUsername(username);
 		return personalNotes;
 	}
 
