@@ -8,6 +8,5 @@ import com.secure.notes.model.Note;
 
 public interface NoteRepository extends JpaRepository<Note, Long>
 {
-	  List<Note> findByOwnerUsername(String ownerUsername);
-
+	List<Note> findByOwnerUsername(String ownerUsername);
 }
