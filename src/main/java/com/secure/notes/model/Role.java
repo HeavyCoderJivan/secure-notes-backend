@@ -18,10 +18,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Table(name = "roles")
 public class Role {
@@ -33,7 +35,7 @@ public class Role {
 	@ToString.Exclude
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20, name = "role_name")
-	private final AppRole roleName;
+	private AppRole roleName;
 
 	@OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JsonBackReference
