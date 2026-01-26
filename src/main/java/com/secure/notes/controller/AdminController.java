@@ -17,12 +17,12 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin")
-//@PreAuthorize("hasRole('ROLE_ADMIN')")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminController 
 {
 	
 	private final UserService userService;
-	//@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/getusers")
 	public ResponseEntity<List<User>> getAllUsers() 
 	{
