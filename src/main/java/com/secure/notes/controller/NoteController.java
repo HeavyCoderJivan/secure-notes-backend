@@ -20,6 +20,7 @@ public class NoteController {
         return noteService.createNoteForUser(
                 userDetails.getUsername(), content);
     }
+    
     @GetMapping
     public List<Note> getUserNotes(
             @AuthenticationPrincipal UserDetails userDetails) {
