@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import com.secure.notes.model.AppRole;
 import com.secure.notes.model.Role;
 import com.secure.notes.model.User;
@@ -30,18 +32,18 @@ public class SecurityConfig
 				requests.requestMatchers("/api/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated());
 		http.csrf(AbstractHttpConfigurer::disable);
+		http.addFilterBefore(new CustomLoggingFilter(), UsernamePasswordAuthenticationFilter.class);
+		http.addFilterAfter(new RequestValidationFilter(),CustomLoggingFilter.class);
 		// http.formLogin(withDefaults());
 		http.httpBasic(Customizer.withDefaults());
+		
 		return http.build();
 	}
-	
 	@Bean
 	public PasswordEncoder passwordEncoder() 
 	{
 		return new BCryptPasswordEncoder();
 	}
-	
-	
 	@Bean
 	public CommandLineRunner initData(RoleRepository roleRepository, UserRepository userRepository,PasswordEncoder passwordEncoder) {
 		return args -> {
