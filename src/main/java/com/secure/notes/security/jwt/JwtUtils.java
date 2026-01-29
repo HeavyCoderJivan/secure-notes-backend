@@ -44,6 +44,7 @@ public class JwtUtils {
 				.expiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(key()).compact();
 	}
 
+	
 	public String getUserNameFromJwtToken(String token) 
 	{
 		return Jwts.parser().verifyWith((SecretKey) key()).build().parseSignedClaims(token).getPayload().getSubject();
@@ -59,13 +60,11 @@ public class JwtUtils {
 	public boolean validateJwtToken(String authToken) {
 		try {
 			System.out.println("Validate");
-			
 			Jwts.parser().verifyWith((SecretKey) key()).
 			build()
 			.parseSignedClaims(authToken);
 			return true;
 		} 
-		
 		
 		catch (MalformedJwtException e) {
 			logger.error("Invalid JWT token: {}", e.getMessage());

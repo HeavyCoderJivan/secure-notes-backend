@@ -21,6 +21,7 @@ public class NoteController {
                 userDetails.getUsername(), content);
     }
     
+    
     @GetMapping
     public List<Note> getUserNotes(
             @AuthenticationPrincipal UserDetails userDetails) {
