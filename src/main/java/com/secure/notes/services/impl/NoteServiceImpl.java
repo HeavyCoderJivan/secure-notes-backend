@@ -20,7 +20,7 @@ public class NoteServiceImpl implements NoteService
 		note.setOwnerUsername(userName);
 		return noteRepository.save(note);		
 	}
-
+	
 	@Override
 	public Note updateNoteForUser(Long noteId, String content, String username)
 	{

@@ -44,8 +44,7 @@ public class SecurityConfig {
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/api/auth/**", "/api/auth/public/**", "/api/csrf-token").permitAll()
 						.requestMatchers("/api/admin/**").hasRole("ADMIN").anyRequest().authenticated()
-
-																										// LAST
+																							// LAST
 				);
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
